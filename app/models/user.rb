@@ -8,4 +8,8 @@ class User < ApplicationRecord
          has_many :tweets
 
          mount_uploader :avatar, AvatarUploader
+
+         validates :username, presence: true, uniqueness: true
+
+         serialize :following, Array
 end
