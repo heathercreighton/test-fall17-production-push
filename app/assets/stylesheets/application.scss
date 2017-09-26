@@ -18,3 +18,78 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'font-awesome';
+
+.navbar-brand{
+	color: white;
+}
+
+a:visited, a:hover{
+	color: white;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default {
+	background: #444649;
+	color: white;
+}
+
+.fa-2x, .nav {
+    font-size: 15px;
+    font-family: FontAwesome;
+}
+
+ul {
+	list-style: none;
+}
+
+.show_user {
+	width: 200px;
+	height: 200px;
+
+}
+
+.thumb {
+	width: 25px;
+	height: 25px;
+
+
+}
+.well{
+	background: #edf1f7;
+}
+.well a:visited{
+	color: black;
+}
+.well a:hover{
+	color: blue;
+	background: white;
+}
+
+body {
+	background: #8aa9d8;
+}
+
+.inner {
+	background: white;
+}
+h1 {
+	text-align: center;
+}
+
+.profiles {
+	height: 450px;
+	width: 350px;
+
+}
+
+
+.login {
+	min-height: 400px;
+}

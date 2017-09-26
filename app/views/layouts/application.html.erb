@@ -20,21 +20,29 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Home", root_path, class: "navbar-brand" %>
+        <ul class= "nav navbar-nav navbar-left" >
+          <li><i class="fa fa-home fa-2x fa-pull-left navbar-brand" > 
+          <%= link_to "Home", root_path %> </i></li>
+        </ul>
+     
       </div>
+
+  
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><%= link_to "Compose New Tweet", new_tweet_path %></li>
-
-          <li><%= link_to "All Tweets", tweets_path %></li>
-        </ul>
+       <div class="nav navbar-nav navbar-center"><%= image_tag "birdie.png", size: 40, class: "user-pic-nav" %></div>
         <ul class="nav navbar-nav navbar-right">
+         <li><%= link_to "All Tweets", tweets_path %></li>
+
           <% if user_signed_in? %>
+
+          
+            <li><%= link_to "Compose New Tweet", new_tweet_path %></li>
+            <li><%= link_to "My User Page", show_user_path(id: current_user.id) %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <% if current_user.avatar.blank? == false %>
-                  <%= image_tag current_user.avatar.url, size:25, class: "user-pic-nav" %>
+                  <%= image_tag current_user.avatar.url, size:25, class: "user-pic-nav img-circle" %>
                 <% end %> 
                 @<%= current_user.username %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -47,9 +55,35 @@
       </div>
     </div>
   </nav>
+
   <div class="container">
-    <%= yield %>
-  </div>
-</body>
-  </body>
-</html>
+    <% if user_signed_in? %>
+      <div class="row" >
+        <div class="col-lg-4">
+          <div class="well" >
+          
+          <!-- This side of the page will contain current_user profile information which will appear on every page -->
+            <center>
+              <p><%= image_tag current_user.avatar.url, class: "show_user img-circle" %></p>
+              <h4>You are currently logged in as: </h4>
+              <p><strong><%= link_to current_user.name, show_user_path(id: current_user.id) %></strong> @<%= current_user.username %></p>
+              <p>Location: <strong><%= current_user.location %></strong></p>
+              
+
+            </center>
+    
+          </div>
+        </div>
+       <div class="col-lg-8">
+          <div class="well"> 
+            <%= yield %>
+          </div>
+          <% else %>
+            <%= yield %>
+          <% end %> 
+        </div>
+    </div> 
+   
+</body>   
+
+

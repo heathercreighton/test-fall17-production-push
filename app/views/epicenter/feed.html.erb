@@ -1,10 +1,33 @@
 <h1>@<%= current_user.username %>'s Twitter Feed</h1>
 
-<h2>Here is what your friends are talking about...</h2>
+<%= form_for Tweet.new, url: {action: "epi_tweet"} do |f| %>
+	  <%= f.text_field :message, class: "form-control" %>
+	  <%= f.hidden_field :user_id, value: current_user.id %>
+	  <%= f.submit "New Tweet", class: "btn btn-primary" %>
+<% end %>
 
-<div class="container">
-	<% @following_tweets.each do |tweet| %>
-		<p>@<%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %> said...</p>
-		<p><%= tweet.message.html_safe %></p>
-	<% end %>	
+	<br>
+	<br>
+
+<p><strong>Here is what your<em> "friends" </em>are saying:</strong></p>
+
+<% @following_tweets.each do |tweet| %>
+<div class="well" >
+	<div class="media">
+  	<div class="media-left media-top">
+    <%= image_tag tweet.user.avatar.thumb, class: "img-circle"%>
+  </div>
+  <div class="media-body">
+    <h5 class="media-heading"><%= link_to tweet.user.name, show_user_path(id: tweet.user.id) %> • <%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %> <%= tweet.created_at.strftime('%b%e') if Time.now - tweet.created_at > 86400 %>  </h5>
+    <p> @<%= tweet.user.username %></p>
+    <p><em> Posted <%= time_ago_in_words(tweet.created_at) %> ago...</em></p>
+    <p><%= tweet.message.html_safe %></p>
+    <% if current_user.id == tweet.user.id %>
+		        	
+		       
+		        	<%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	   <% end %>	
+  </div>
 </div>
+	</div>
+<% end %>
