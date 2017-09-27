@@ -39,6 +39,8 @@
           
             <li><%= link_to "Compose New Tweet", new_tweet_path %></li>
             <li><%= link_to "My User Page", show_user_path(id: current_user.id) %></li>
+            <li><%= link_to "All Users", all_users_path %></li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <% if current_user.avatar.blank? == false %>
@@ -68,6 +70,14 @@
               <h4>You are currently logged in as: </h4>
               <p><strong><%= link_to current_user.name, show_user_path(id: current_user.id) %></strong> @<%= current_user.username %></p>
               <p>Location: <strong><%= current_user.location %></strong></p>
+
+
+              <!-- Add a count and link to see who we are following -->
+              <p>Following: <%= link_to current_user.following.length, following_path(id: current_user.id) %></p>
+              <!-- Add a count and link to see who is following us. Calls a method in our helper -->
+              <p>Followers: <%= link_to current_user_followers(current_user.id), followers_path(id: current_user.id) %></p>
+              <!-- Add a count and link to All of our tweets. Calls a method in our helper -->
+              <p>Tweets: <%= link_to tweet_count(current_user.id), show_user_path(id: current_user.id) %></p>
               
 
             </center>
