@@ -25,7 +25,7 @@ gem 'mini_magick'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
-gem 'fog-aws'
+gem 'fog'
 gem 'figaro'
 
 
