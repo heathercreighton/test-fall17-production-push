@@ -1,6 +1,6 @@
 <div class="row">
   <% @users.each do |user| %>
-    <div class="col-md-3">
+    <div class="col-md-5">
       <div class="well">
         <div class="row">
           <div class="col-md-6">
@@ -9,7 +9,7 @@
           <div class="col-md-6">
             <p>
               <% if current_user.following.include?(user.id) %>
-                <%= link_to "Following", unfollow_path(id: user.id), class: "btn btn-primary", id: "unfollow_btn" %>
+                <%= link_to "Following", unfollow_path(id: user.id), class: "btn btn-primary unfollow_btn" %>
               <% else %>
                 <% if current_user.id != user.id %>
                   <%= link_to "Follow", now_following_path(id: user.id), class: "btn btn-primary" %>
