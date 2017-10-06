@@ -96,10 +96,12 @@
               <% Tag.all.each do |tag| %>
                   <%= link_to tag.phrase, tag_tweets_path(id: tag.id)%> 
               <% end %>
-            <h4> Top Tweeter: </h4>
-                 @<%= link_to top_tweeter.username, show_user_path(id: top_tweeter.id) %>: 
-                 <%= tweet_count(top_tweeter.id) %> Tweets!
+            <% if !Tweet.all.blank? %>  
+              <h4> Top Tweeter: </h4>
+                   @<%= link_to top_tweeter.username, show_user_path(id: top_tweeter.id) %>: 
+                   <%= tweet_count(top_tweeter.id) %> Tweets!
 
+            <% end %>     
 
           </div>
           </div>
